@@ -1,11 +1,13 @@
-package com.example.project3_todoapp.MVVM
+package com.example.project3_todoapp.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import com.example.project3_todoapp.MVVM.Todo
 import kotlinx.coroutines.flow.Flow
 
 // đối tượng truy nhập dữ liệu
@@ -26,5 +28,5 @@ interface TodoDAO {
     fun getToDo(id: Int): Flow<Todo>
 
     @Query("SELECT * FROM TODO ORDER BY Time DESC ")
-    fun getAllToDos() : Flow<List<Todo>>
+    fun getAllToDos() : LiveData<List<Todo>>
 }

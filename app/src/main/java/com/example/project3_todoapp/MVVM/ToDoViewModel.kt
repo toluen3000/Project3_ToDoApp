@@ -1,20 +1,29 @@
 package com.example.project3_todoapp.MVVM
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.coroutines.launch
 import androidx.lifecycle.viewModelScope
-import com.example.project3_todoapp.MVVM.Todo
+import com.example.project3_todoapp.repository.ToDoRepository
+import kotlinx.coroutines.Dispatchers
 import java.util.Date
 
 
-class ToDoViewModel(private val todoDao: TodoDAO):ViewModel() {
+class ToDoViewModel(private val repository: ToDoRepository):ViewModel() {
 
     private fun insertToDo(todo: Todo){
-        viewModelScope.launch{
-            todoDao.insert(todo)
+        viewModelScope.launch(Dispatchers.IO){
+            repository.addTodo(todo)
+        }
+
+    }    private fun deleteToDo(todo: Todo){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.delete(todo)
         }
     }
+
+    fun getAllTodos(): LiveData<List<Todo>> = repository.getTodo()
 
     //Trong lớp InventoryViewModel, hãy thêm một hàm riêng tư khác chứa 3 chuỗi và trả về phiên bản thể hiện Item.
 
@@ -49,13 +58,3 @@ class ToDoViewModel(private val todoDao: TodoDAO):ViewModel() {
 
 }
 
-class InventoryViewModelFactory(private val todoDao: TodoDAO):ViewModelProvider.Factory{
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(ToDoViewModel::class.java)){
-            @Suppress("UNCHECKED_CAST")
-                return ToDoViewModel(todoDao) as T
-
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
-}
