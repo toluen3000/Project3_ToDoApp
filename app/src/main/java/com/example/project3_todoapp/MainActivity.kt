@@ -13,6 +13,7 @@ import com.example.project3_todoapp.repository.ToDoRepository
 
 
 class MainActivity : AppCompatActivity() {
+
     lateinit var todoViewModel: ToDoViewModel
     private lateinit var binding:ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,21 +22,13 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
 
-       try {
-           setContentView(binding.root)
-           val toDoRepository = ToDoRepository(TodoDatabase(this))
-           val toDoViewModelFactory = ToDoViewModelFactory(toDoRepository)
-           todoViewModel = ViewModelProvider(
-               this,
-               toDoViewModelFactory)[ToDoViewModel::class.java]
 
-       }catch (e : Exception){
-            Log.d("TAG","ERROR")
-
-        }
+        setupViewModel()
 
     }
     private fun setupViewModel(){
-
+        val toDoRepository = ToDoRepository(TodoDatabase(this))
+        val viewModelProviderFactory = ToDoViewModelFactory(application,toDoRepository)
+        todoViewModel = ViewModelProvider(this,viewModelProviderFactory)[ToDoViewModel::class.java]
     }
 }

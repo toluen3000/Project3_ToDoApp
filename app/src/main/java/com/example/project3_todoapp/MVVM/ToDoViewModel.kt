@@ -1,5 +1,7 @@
 package com.example.project3_todoapp.MVVM
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -10,7 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import java.util.Date
 
 
-class ToDoViewModel(private val repository: ToDoRepository):ViewModel() {
+class ToDoViewModel(app: Application,private val repository: ToDoRepository):AndroidViewModel(app) {
 
     private fun insertToDo(todo: Todo){
         viewModelScope.launch(Dispatchers.IO){

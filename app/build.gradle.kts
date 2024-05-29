@@ -1,6 +1,8 @@
 plugins {
+
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("androidx.navigation.safeargs")
 }
 
 android {
@@ -39,8 +41,11 @@ android {
     }
 }
 
+
 dependencies {
     val nav_version = "2.7.7"
+
+
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
     //viewModel
