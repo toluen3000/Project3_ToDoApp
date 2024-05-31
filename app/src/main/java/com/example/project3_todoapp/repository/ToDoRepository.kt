@@ -1,6 +1,6 @@
 package com.example.project3_todoapp.repository
 
-import com.example.project3_todoapp.MVVM.Todo
+import com.example.project3_todoapp.mvvm.Todo
 import com.example.project3_todoapp.database.TodoDatabase
 
 class ToDoRepository(private val db: TodoDatabase) {

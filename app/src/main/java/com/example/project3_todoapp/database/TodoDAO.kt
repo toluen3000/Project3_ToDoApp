@@ -7,8 +7,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.example.project3_todoapp.MVVM.Todo
-import kotlinx.coroutines.flow.Flow
+import com.example.project3_todoapp.mvvm.Todo
 
 // đối tượng truy nhập dữ liệu
 // data access object
@@ -25,7 +24,7 @@ interface TodoDAO {
     suspend fun delete(todo: Todo)
 
     @Query("SELECT * FROM TODO WHERE id = :id")
-    fun getToDo(id: Int): Flow<Todo>
+    fun getToDo(id: Int): LiveData<Todo>
 
     @Query("SELECT * FROM TODO ORDER BY Time DESC ")
     fun getAllToDos() : LiveData<List<Todo>>

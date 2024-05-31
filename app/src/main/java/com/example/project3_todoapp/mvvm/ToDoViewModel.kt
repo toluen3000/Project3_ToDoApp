@@ -1,15 +1,12 @@
-package com.example.project3_todoapp.MVVM
+package com.example.project3_todoapp.mvvm
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import kotlinx.coroutines.launch
 import androidx.lifecycle.viewModelScope
 import com.example.project3_todoapp.repository.ToDoRepository
 import kotlinx.coroutines.Dispatchers
-import java.util.Date
 
 
 class ToDoViewModel(app: Application,private val repository: ToDoRepository):AndroidViewModel(app) {
@@ -29,7 +26,7 @@ class ToDoViewModel(app: Application,private val repository: ToDoRepository):And
 
     //Trong lớp InventoryViewModel, hãy thêm một hàm riêng tư khác chứa 3 chuỗi và trả về phiên bản thể hiện Item.
 
-    private fun getNewToDoEntry(title: String, description: String, time:Date):Todo{
+    private fun getNewToDoEntry(title: String, description: String, time:String): Todo {
         return Todo(
             title = title,
             description = description,
@@ -37,7 +34,7 @@ class ToDoViewModel(app: Application,private val repository: ToDoRepository):And
         )
     }
 
-    fun addNewToDoEntry(title: String, description: String, time:Date):Todo{
+    fun addNewToDoEntry(title: String, description: String, time:String): Todo {
         return Todo(
             title = title,
             description = description,
@@ -45,7 +42,7 @@ class ToDoViewModel(app: Application,private val repository: ToDoRepository):And
         )
     }
 
-    fun addNewToDo(title: String, description: String, time:Date){
+    fun addNewToDo(title: String, description: String, time:String){
         val newTodo = getNewToDoEntry(title,description,time)
         insertToDo(newTodo)
     }
@@ -59,4 +56,3 @@ class ToDoViewModel(app: Application,private val repository: ToDoRepository):And
 
 
 }
-

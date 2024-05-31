@@ -1,17 +1,20 @@
 plugins {
-
-    alias(libs.plugins.androidApplication)
-    alias(libs.plugins.jetbrainsKotlinAndroid)
-    id("androidx.navigation.safeargs")
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id ("kotlin-kapt")
+    id ("kotlin-parcelize")
+    id("com.google.devtools.ksp")
+    id ("androidx.navigation.safeargs")
 }
 
+
 android {
-    namespace = "com.example.project3_todoapp"
+    namespace = "com.example.notesroompractice"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.project3_todoapp"
-        minSdk = 29
+        applicationId = "com.example.notesroompractice"
+        minSdk = 28
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -35,36 +38,41 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-
-    dataBinding{
-        enable = true
+    buildFeatures{
+        dataBinding = true
     }
 }
 
-
 dependencies {
-    val nav_version = "2.7.7"
 
+    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.10.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
-    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
-    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
-    //viewModel
-    implementation ("androidx.fragment:fragment-ktx:1.3.2")
+    // ROOM
+    val roomVersion = "2.6.1"
+    implementation ("androidx.room:room-runtime:$roomVersion")
+    //implementation("androidx.room:room-compiler:$roomVersion") //kps
 
-    val lifecycle_version = "2.7.0"
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
-    //roomdb
-    val room_version = "2.6.1"
-    implementation("androidx.room:room-runtime:$room_version")
-    implementation ("androidx.room:room-ktx:$room_version")
-    //
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.constraintlayout)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
+    implementation ("androidx.room:room-ktx:$roomVersion")
+
+    // Navigation
+    val navVersion = "2.7.5"
+    implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
+    implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
+
+    // Life Cycle Arch
+    val lifecycleVersion = "2.6.2"
+    // ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
+    // LiveData
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
+    // Annotation processor
+    //implementation("androidx.lifecycle:lifecycle-compiler:$lifecycleVersion") //kps
 }

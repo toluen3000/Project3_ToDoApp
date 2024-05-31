@@ -1,14 +1,13 @@
 package com.example.project3_todoapp
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.example.project3_todoapp.MVVM.ToDoViewModel
-import com.example.project3_todoapp.MVVM.ToDoViewModelFactory
+import com.example.notesroompractice.databinding.ActivityMainBinding
 import com.example.project3_todoapp.database.TodoDatabase
-import com.example.project3_todoapp.databinding.ActivityMainBinding
+import com.example.project3_todoapp.mvvm.ToDoViewModel
+import com.example.project3_todoapp.mvvm.ToDoViewModelFactory
 import com.example.project3_todoapp.repository.ToDoRepository
 
 

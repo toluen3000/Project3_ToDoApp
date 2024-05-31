@@ -1,42 +1,25 @@
-package com.example.project3_todoapp.Fragments
-
-import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
-import android.widget.SearchView
-import androidx.core.view.MenuHost
-import androidx.core.view.MenuProvider
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Lifecycle
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.example.project3_todoapp.MVVM.ToDoViewModel
-import com.example.project3_todoapp.MVVM.Todo
+import com.example.notesroompractice.R
+import com.example.notesroompractice.databinding.FragmentTodoHomeBinding
 import com.example.project3_todoapp.MainActivity
-import com.example.project3_todoapp.R
+import com.example.project3_todoapp.mvvm.Todo
 import com.example.project3_todoapp.adapter.ToDoAdapter
-import com.example.project3_todoapp.databinding.FragmentToDoBinding
-import com.google.android.material.transition.MaterialElevationScale
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import com.example.project3_todoapp.mvvm.ToDoViewModel
 
-class ToDoFragment : Fragment(R.layout.fragment_to_do) {
 
-    private var toDobinding: FragmentToDoBinding? = null
+class FragmentTodoHome : Fragment(R.layout.fragment_todo_home) {
+
+    private var toDobinding: FragmentTodoHomeBinding? = null
     private val binding get() = toDobinding!!
 
     //private val toDosViewModel:ToDoViewModel by activityViewModels()
-    private lateinit var toDosViewModel:ToDoViewModel
+    private lateinit var toDosViewModel: ToDoViewModel
     private lateinit var todoAdapter: ToDoAdapter
 
 
@@ -61,7 +44,7 @@ class ToDoFragment : Fragment(R.layout.fragment_to_do) {
 //        }
 
         toDobinding?.addNoteFab?.setOnClickListener {
-            it.findNavController().navigate(R.id.action_addToDoFragment_to_toDoFragment)
+            it.findNavController().navigate(R.id.action_fragmentTodoHome_to_fragmentAddTodo)
         }
 
     }
@@ -71,13 +54,13 @@ class ToDoFragment : Fragment(R.layout.fragment_to_do) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        toDobinding = FragmentToDoBinding.inflate(inflater, container,false)
+        toDobinding = FragmentTodoHomeBinding.inflate(inflater, container,false)
         return binding.root
     }
 
-    private fun updateUI(todo:List<Todo>?){
-        if (todo!= null){
-            if(todo.isNotEmpty()){
+    private fun updateUI(listTodo :List<Todo>?){
+        if (listTodo!= null){
+            if(listTodo.isNotEmpty()){
                 binding.recyclerView.visibility = View.VISIBLE
             }else{
                 binding.recyclerView.visibility = View.GONE
@@ -95,8 +78,8 @@ class ToDoFragment : Fragment(R.layout.fragment_to_do) {
 
         activity?.let {
             toDosViewModel.getAllTodos().observe(viewLifecycleOwner){
-                todo -> todoAdapter.differ.submitList(todo)
-                updateUI(todo)
+                    allTodo -> todoAdapter.differ.submitList(allTodo)
+                updateUI(allTodo)
             }
         }
 
@@ -105,3 +88,4 @@ class ToDoFragment : Fragment(R.layout.fragment_to_do) {
 
 
 }
+

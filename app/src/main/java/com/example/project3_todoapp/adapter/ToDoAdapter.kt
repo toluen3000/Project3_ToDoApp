@@ -6,10 +6,9 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.project3_todoapp.Fragments.ToDoFragment
-import com.example.project3_todoapp.Fragments.ToDoFragmentDirections
-import com.example.project3_todoapp.MVVM.Todo
-import com.example.project3_todoapp.databinding.TodoLayoutBinding
+import com.example.notesroompractice.databinding.TodoLayoutBinding
+import com.example.project3_todoapp.mvvm.Todo
+
 
 class ToDoAdapter:RecyclerView.Adapter<ToDoAdapter.ToDoViewHolder>() {
 
@@ -47,10 +46,10 @@ class ToDoAdapter:RecyclerView.Adapter<ToDoAdapter.ToDoViewHolder>() {
         holder.itemBinding.txtDescription.text = currentTodo.description
         holder.itemBinding.txtTime.text = currentTodo.time.toString()
 
-        holder.itemView.setOnClickListener{
-            val direction = ToDoFragmentDirections.actionToDoFragmentToAddToDoFragment()
-            it.findNavController().navigate(direction)
-        }
+//        holder.itemView.setOnClickListener{
+//            val direction = FragmentAddTodoDirections.actionFragmentTodoHomeToFragmentAddTodo()
+//            it.findNavController().navigate(direction)
+//        }
 
 
 

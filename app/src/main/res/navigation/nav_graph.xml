@@ -1,37 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation
-    app:startDestination="@id/toDoFragment"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragmentTodoHome">
 
     <fragment
-        android:id="@+id/addToDoFragment"
-        android:name="com.example.project3_todoapp.Fragments.AddToDoFragment"
-        android:label="fragment_add_to_do"
-        tools:layout="@layout/fragment_add_to_do" >
+        android:id="@+id/fragmentTodoHome"
+        android:name="com.example.project3_todoapp.fragments.FragmentAddTodo"
+        android:label="FragmentTodoHome" >
         <action
-            android:id="@+id/action_addToDoFragment_to_toDoFragment"
-            app:destination="@id/toDoFragment" />
-
+            android:id="@+id/action_fragmentTodoHome_to_fragmentAddTodo"
+            app:destination="@id/fragmentAddTodo" />
+        <argument
+            android:name="homeTodo"
+            app:argType="com.example.project3_todoapp.mvvm.Todo"
+            app:nullable="true"
+            />
     </fragment>
     <fragment
-        android:id="@+id/toDoFragment"
-        android:name="com.example.project3_todoapp.Fragments.ToDoFragment"
-        android:label="ToDoFragment" >
+        android:id="@+id/fragmentAddTodo"
+        android:name="com.example.project3_todoapp.fragments.FragmentAddTodo"
+        android:label="FragmentAddTodo" >
         <action
-            android:id="@+id/action_toDoFragment_to_addToDoFragment"
-            app:destination="@id/addToDoFragment" />
-        <argument android:name="Todo"
-            android:defaultValue="@null"
-            app:argType="com.example.project3_todoapp.MVVM"
-            app:nullable="true"
-            >
-
-        </argument>
-
-
-
+            android:id="@+id/action_fragmentAddTodo_to_fragmentTodoHome"
+            app:destination="@id/fragmentTodoHome" />
     </fragment>
 </navigation>

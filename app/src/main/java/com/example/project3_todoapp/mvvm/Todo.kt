@@ -1,9 +1,8 @@
-package com.example.project3_todoapp.MVVM
+package com.example.project3_todoapp.mvvm
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.util.Date
 
 
 @Entity(tableName = "Todo")
@@ -15,6 +14,6 @@ data class Todo (
     @ColumnInfo(name = "Description")
     val description: String,
     @ColumnInfo(name = "Time")
-    val time: Date
+    val time: String
 ) {
 }

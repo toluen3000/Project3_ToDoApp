@@ -3,7 +3,7 @@
     <data>
         <variable
             name="todo"
-            type="com.example.project3_todoapp.Fragments.ToDoFragment" />
+            type="com.example.project3_todoapp.fragments.FragmentTodoHome" />
     </data>
 
 
@@ -11,7 +11,7 @@
         android:background="@drawable/background_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Fragments.ToDoFragment">
+        tools:context=".ToDoFragment">
 
 
         <TextView
@@ -44,6 +44,4 @@
 
     </FrameLayout>
 </layout>
-
-
 
